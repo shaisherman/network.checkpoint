@@ -5,8 +5,8 @@ import com.checkpoint.network.domain.AuthType;
 import com.checkpoint.network.domain.Device;
 import com.checkpoint.network.domain.NetworkItem;
 import com.checkpoint.network.domain.exceptions.IncompatibleAuthenticationTypeException;
-import com.checkpoint.network.domain.exceptions.UnavilableDeviceException;
-import com.checkpoint.network.domain.exceptions.UnavilableNetworkException;
+import com.checkpoint.network.domain.exceptions.UnavailableDeviceException;
+import com.checkpoint.network.domain.exceptions.UnavailableNetworkException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
@@ -19,6 +19,7 @@ public class NetworkComponent {
 
     @Autowired
     NetworkDao networkDao;
+
     private HashMap<Integer, NetworkItem> networks;
 
     @EventListener(ApplicationReadyEvent.class)
@@ -77,10 +78,10 @@ public class NetworkComponent {
             if (wifi.devices.containsKey(deviceId)) {
                 wifi.UpdateDeviceThroughput(deviceId, throughput);
             } else {
-                throw new UnavilableDeviceException("Invalid device id", networkId, deviceId);
+                throw new UnavailableDeviceException("Invalid device id", networkId, deviceId);
             }
         } else {
-            throw new UnavilableNetworkException("Invalid network id", networkId);
+            throw new UnavailableNetworkException("Invalid network id", networkId);
         }
     }
 

@@ -1,6 +1,5 @@
 package com.checkpoint.network.domain;
 
-
 import javax.persistence.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,5 +36,4 @@ public class NetworkItem {
         average = (average * devices.size() - preThroughput + deviceNewThroughput) / devices.size();
         currDevice.throughput = deviceNewThroughput;
     }
-
 }
