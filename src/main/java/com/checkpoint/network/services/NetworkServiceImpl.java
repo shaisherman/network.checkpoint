@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class NetworkServiceImpl implements NetworkService {
 
-
     @Autowired
     NetworkComponent networkComponent;
 

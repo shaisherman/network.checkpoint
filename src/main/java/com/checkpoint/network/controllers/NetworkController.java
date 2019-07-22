@@ -5,8 +5,8 @@ import com.checkpoint.network.domain.DeviceReportArgs;
 import com.checkpoint.network.domain.NetworkItem;
 import com.checkpoint.network.domain.NetworkResponseType;
 import com.checkpoint.network.domain.exceptions.IncompatibleAuthenticationTypeException;
-import com.checkpoint.network.domain.exceptions.UnavilableDeviceException;
-import com.checkpoint.network.domain.exceptions.UnavilableNetworkException;
+import com.checkpoint.network.domain.exceptions.UnavailableDeviceException;
+import com.checkpoint.network.domain.exceptions.UnavailableNetworkException;
 import com.checkpoint.network.services.NetworkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +18,6 @@ public class NetworkController {
 
     @Autowired
     NetworkService networkService;
-
 
     @RequestMapping(value = "/connect", method = RequestMethod.PUT)
     @ExceptionHandler(IncompatibleAuthenticationTypeException.class)
@@ -33,10 +32,10 @@ public class NetworkController {
         try {
             networkService.ReportNetworkThroughput(deviceReportArgs);
             networkReportResponse = NetworkResponseType.ok;
-        } catch (UnavilableDeviceException ex) {
+        } catch (UnavailableDeviceException ex) {
             System.out.println("device reporting failed because of unavailable device");
             networkReportResponse = NetworkResponseType.error;
-        } catch (UnavilableNetworkException ex) {
+        } catch (UnavailableNetworkException ex) {
             System.out.println("device reporting failed because of unavailable network");
             networkReportResponse = NetworkResponseType.error;
         } catch (Exception ex) {
@@ -46,11 +45,9 @@ public class NetworkController {
         return networkReportResponse;
     }
 
-
     @GetMapping
     public NetworkItem Fetch(@RequestParam(value = "id") Integer networkId) {
         NetworkItem wifi = networkService.GetNetwork(networkId);
         return wifi;
     }
-
 }

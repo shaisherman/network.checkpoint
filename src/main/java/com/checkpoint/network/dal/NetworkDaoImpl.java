@@ -12,6 +12,7 @@ import java.util.List;
 @Transactional
 @Component
 public class NetworkDaoImpl implements NetworkDao {
+
     @PersistenceContext
     private EntityManager em;
 

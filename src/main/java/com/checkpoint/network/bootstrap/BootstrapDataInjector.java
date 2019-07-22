@@ -14,12 +14,6 @@ import org.springframework.stereotype.Component;
 public class BootstrapDataInjector implements CommandLineRunner {
 
     @Autowired
-    NetworkRepository networkRepository;
-
-    @Autowired
-    DeviceRepository deviceRepository;
-
-    @Autowired
     NetworkDao networkDao;
 
     @Override
@@ -28,7 +22,6 @@ public class BootstrapDataInjector implements CommandLineRunner {
         NetworkItem ni1 = new NetworkItem();
         ni1.id = 123;
         ni1.auth = AuthType.Public;
-        //networkDao.SaveNetwork(ni1);
 
         for (int i = 0; i < 10; i++) {
             Device dev = new Device();
